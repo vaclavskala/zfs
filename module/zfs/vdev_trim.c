@@ -880,6 +880,8 @@ vdev_trim_thread(void *arg)
 	for (uint64_t i = 0; !vd->vdev_detached &&
 	    i < vd->vdev_top->vdev_ms_count; i++) {
 		metaslab_t *msp = vd->vdev_top->vdev_ms[i];
+		ta.trim_extent_bytes_max = zfs_trim_extent_bytes_max;
+		ta.trim_extent_bytes_min = zfs_trim_extent_bytes_min;
 
 		/*
 		 * If we've expanded the top-level vdev or it's our
